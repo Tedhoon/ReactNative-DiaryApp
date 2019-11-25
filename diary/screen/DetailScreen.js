@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import DetailHeader from '../components/DetailHeader';
 import NullPage from '../components/NullPage'
@@ -9,11 +9,15 @@ export default class DetailScreen extends React.Component {
 
   post = this.props.navigation.getParam('post')
 
+  _deletesignal = () => {
+    this.props.navigation.navigate("MainScreen" , {signal : this.post.id})
+  }
+
   render() {
 
     return (
       <SafeAreaView style={styles.container}>
-        <DetailHeader/>
+        <DetailHeader deleteProps = {this._deletesignal}/>
         {this.post?
           <View >
             <View style = {styles.detailbox}> 
@@ -21,6 +25,10 @@ export default class DetailScreen extends React.Component {
                 제목 : {this.post.title}
               </Text>
             </View>
+            {this.post.imageUri ?
+              <Image source={{uri : this.post.imageUri }} style ={{width : 200 , height : 200}} />
+              : null
+            }
             <View style={styles.detailbox}>
               <Text style={styles.detailcontent}>
                 내용 : {this.post.content}

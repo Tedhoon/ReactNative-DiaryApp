@@ -4,7 +4,7 @@ import { withNavigation} from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 
 
-const WriteHeader = ({navigation}) => {
+const WriteHeader = ({navigation , saveprops, selectImage}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -14,10 +14,12 @@ const WriteHeader = ({navigation}) => {
       </TouchableOpacity>
       <View style={styles.iconContainer}>
         <TouchableOpacity
+        onPress={() => selectImage()}
           hitSlop={{ top: 2, bottom: 2, left: 2, right: 2 }}>
             <Ionicons name="ios-image" size={25}/>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={()=> saveprops()}
           hitSlop={{ top: 2, bottom: 2, left: 2, right: 2 }}>
             <Ionicons name="ios-save" size={25}/>
         </TouchableOpacity>
